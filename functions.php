@@ -143,7 +143,7 @@ function dsignfly1_scripts() {
 
 	wp_enqueue_script( 'dsignfly1-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-	wp_enqueue_style( 'header-css', get_template_directory_uri() . '/header.css', array(), '1.0', 'all' );
+	wp_enqueue_style( 'header-css', get_template_directory_uri() . '/custom.css', array(), '1.0', 'all' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -177,4 +177,64 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/**
+ * Register custom post type portfolio
+ */
+
+function dsignfly_portfolio_post(){
+
+	$labels = array(
+        'name'                  => _x( 'Portfolios', 'Post type general name', 'dsignfly' ),
+        'singular_name'         => _x( 'Portfolio', 'Post type singular name', 'dsignfly' ),
+        'menu_name'             => _x( 'Portfolio', 'dsignfly' ),
+        'name_admin_bar'        => _x( 'Portfolio', 'dsignfly' ),
+        'add_new'               => __( 'Add Portfolio', 'dsignfly' ),
+        'add_new_item'          => __( 'Add New Portflio', 'dsignfly' ),
+        'new_item'              => __( 'New Portfolio', 'dsignfly' ),
+        'edit_item'             => __( 'Edit Portfolio', 'dsignfly' ),
+        'view_item'             => __( 'View Portfolio', 'dsignfly' ),
+        'all_items'             => __( 'All Portfolios', 'dsignfly' ),
+        'search_items'          => __( 'Search Portfolios', 'dsignfly' ),
+        'parent_item_colon'     => __( 'Parent Portfolios:', 'dsignfly' ),
+        'not_found'             => __( 'No Portfolio found.', 'dsignfly' ),
+        'not_found_in_trash'    => __( 'No Portfolios found in Trash.', 'dsignfly' ),
+        'featured_image'        => _x( 'Portfolio Featured Image', 'dsignfly' ),
+        'set_featured_image'    => _x( 'Set cover image', 'dsignfly' ),
+        'remove_featured_image' => _x( 'Remove featured image for portfolio', 'dsignfly' ),
+        'use_featured_image'    => _x( 'Use as featured image for Portfolio', 'dsignfly' ),
+        'archives'              => _x( 'Portfolio archives', 'dsignfly' ),
+        'insert_into_item'      => _x( 'Insert into Portfolio', 'dsignfly' ),
+        'uploaded_to_this_item' => _x( 'Uploaded to this Portfolio', 'dsignfly' ),
+        'filter_items_list'     => _x( 'Filter Portfolios list', 'dsignfly' ),
+        'items_list_navigation' => _x( 'Portfolios list navigation', 'dsignfly' ),
+        'items_list'            => _x( 'Portfolios list', 'dsignfly' ),
+    );     
+    $args = array(
+		'label'				 => __('Portfolio','dsignfly'),
+        'labels'             => $labels,
+        'description'        => 'Portfolio custom post type.',
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'dsignfly' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'supports'           => array( 'title', 'editor', 'thumbnail','comments','excerpt'),
+        'taxonomies'         => array( 'category', 'post_tag' ),
+        'show_in_rest'       => true,
+		'exclude_from_search'=> false,
+		'show_in_admin_bar' => true,
+        'show_in_nav_menus' => true,
+		'can_export'		=> true,
+    );
+      
+    register_post_type( 'Portfolio', $args );
+}
+
+add_action('init','dsignfly_portfolio_post',0);
 
