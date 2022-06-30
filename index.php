@@ -16,4 +16,35 @@ get_header();
 get_template_part( 'content', 'features' );
 ?>
 
+
+<!-- Blog and sidebar section -->
+
+<div class="container">
+	<div class="row">
+
+		<!-- blog -->
+		<div class="blog-column">
+			<h2 class="blog-heading">LET'S BLOG</h2>
+			<hr>
+		
+		<?php
+		if(have_posts()){
+			while(have_posts()){
+				the_post(  );
+				get_template_part('content', 'archive');
+			}
+		}
+		?>
+		</div>
+
+		<?php get_template_part('content', 'sidebar'); ?>
+
+	</div>
+	<hr>
+</div>
+
+
+<!-- pagination -->
+
+<?php get_footer(); ?>
 	

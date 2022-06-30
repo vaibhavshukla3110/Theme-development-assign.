@@ -238,3 +238,49 @@ function dsignfly_portfolio_post(){
 
 add_action('init','dsignfly_portfolio_post',0);
 
+/**
+ * Registers Widget Areas
+ */
+
+function dsignfly_widget_areas () {
+
+	/**
+	 * Resgister sidebar
+	 * 
+	 * @param array for dynamic side bar
+	 */
+	register_sidebar(
+		array(
+			'before_title' => '',
+			'after_title'  => '',
+			'before_widget'=> '',
+			'after_widget' => '',
+			'name' 		   => 'Sidebar Area',
+			'id'           => 'sidebar-1',
+			'description'  => 'Sidebar Widget Area',
+		)
+		);
+}
+
+add_action('widgets_init', 'dsignfly_widget_areas');
+
+
+// Portfolio Widget
+require_once( 'widgets/dsignfly-portfolio-widget.php' );
+
+// Recent Post Widget
+require_once( 'widgets/dsignfly-recent-posts-widget.php' );
+
+// Monthly Archive Widget
+require_once( 'widgets/dsignfly-archive-widget.php' );
+
+/**
+ * Filter the except length to 20 words.
+ *
+ * @param int $length Excerpt length.
+ * @return int (Maybe) modified excerpt length.
+ */
+function wpdocs_custom_excerpt_length( $length ) {
+    return 20;
+}
+add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
