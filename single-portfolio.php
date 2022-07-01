@@ -7,24 +7,28 @@ if(have_posts()){
     }
 }
 
-get_template_part( 'content', 'features' );
+get_template_part( 'template-parts/content', 'features' );
 ?>
 
 <div class="container">
     <div class="row">
         <div class="blog-column">
-            <h2 class="single-blog-heading"><?php the_title(); ?></h2>
+            <h2 class="blog-heading"><?php the_title(); ?></h2>
             <div class="single-blog-details">
                 <span class="single-blog-post-details">by <?php the_author(); ?></a> on <?php the_date(); ?></span>
                 <span class="single-blog-post-details single-blog-post-comments"><?php comments_number(); ?></span>
             </div>
-
-            <?php get_template_part('content','article'); ?>
-
+            <hr style="height: 1px; background-color: #62585f;">
+            <p class="single-blog-post-text"><?php the_content(); ?></p>
+            <hr style="height: 1px; background-color: #62585f;">
             <?php comments_template() ?>
         </div>
-        <?php get_template_part('content','sidebar'); ?>
+        <?php get_template_part('template-parts/content','sidebar'); ?>
     </div>
 </div>
+
+<div class="container">
+      <hr style="height: 1px; background-color: #62585f; margin-top: 25px;">
+    </div>
 
 <?php get_footer(); ?>

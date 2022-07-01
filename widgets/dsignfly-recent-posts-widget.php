@@ -59,7 +59,7 @@ class dsignfly_recent_post_widget extends WP_Widget {
                     </div>
                     <div class="recent-post-details">
                     <span class="recent-post-title"><a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a></span><br>
-                    <span class="recent-post-details ">by <?php the_author();?> on <?php echo get_the_date(); ?></span>
+                    <span class="recent-post-details    ">by <?php the_author();?> on <?php echo get_the_date(); ?></span>
                     </div>
                 </div>
                 <?php

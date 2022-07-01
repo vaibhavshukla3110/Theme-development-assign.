@@ -1,77 +1,49 @@
-<?php
-/**
- * The template for displaying comments
- *
- * This is the template that displays the area of the page that contains both the current comments
- * and the comment form.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package dsignfly1
- */
+<!-- Comment Section -->
+<p class="single-blog-comment-heading">Comments</p>
+<hr style="height: 1px; background-color: #62585f;">
 
-/*
- * If the current post is protected by a password and
- * the visitor has not yet entered the password we will
- * return early without loading the comments.
- */
-if ( post_password_required() ) {
-	return;
-}
+    <?php
+    if(!have_comments()){
+      echo '<span style="color:#ef4634;">No Post Found. Leave a comment</span>';
+    } else {
+    ?>
+    <?php
+    }
+    ?>
+<div>
+
+<?php
+
+ wp_list_comments(
+   array(
+     'avatar_size' => 50,
+     'style' => 'div',
+   )
+ );
+
 ?>
 
-<div id="comments" class="comments-area">
+</div>
 
-	<?php
-	// You can start editing here -- including this comment!
-	if ( have_comments() ) :
-		?>
-		<h2 class="comments-title">
-			<?php
-			$dsignfly1_comment_count = get_comments_number();
-			if ( '1' === $dsignfly1_comment_count ) {
-				printf(
-					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'dsignfly1' ),
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			} else {
-				printf(
-					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $dsignfly1_comment_count, 'comments title', 'dsignfly1' ) ),
-					number_format_i18n( $dsignfly1_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			}
-			?>
-		</h2><!-- .comments-title -->
 
-		<?php the_comments_navigation(); ?>
+<div>
+  <?php
+  if(comments_open()){
+    $fields = array(
+      'author' => '<div class="single_blog_comment-form-group"><label class="single-blog-form-label" for="single-blog-comment_username">Name</label><br><input style="width:95%" type="text" id="author" name="author" class="single-blog-form-item" required></div>',
+      'email' => '<div class="single_blog_comment-form-group"><label class="single-blog-form-label" for="single-blog-comment_username">Email</label><br><input style="width:95%" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" name="email" class="single-blog-form-item" required></div>',
+      'url' => '<div class="single_blog_comment-form-group"><label class="single-blog-form-label" for="single-blog-comment_username">Website</label><br><input style="width:100%" type="url" pattern="https?://.+" id="url" name="url" class="single-blog-form-item"></div>'
+    );
+    $args = array(
+      'fields' => $fields,
+      'comment_field' => '<textarea class="single-blog-form-item" style="height:90px" id="comment" name="comment" required></textarea>',
+      'submit_field' => '<input name="submit" type="submit" id="submit" class="single_blog_comment-form-submit" value="Submit">',
+    );
+    comment_form($args);
+    ?>
 
-		<ol class="comment-list">
-			<?php
-			wp_list_comments(
-				array(
-					'style'      => 'ol',
-					'short_ping' => true,
-				)
-			);
-			?>
-		</ol><!-- .comment-list -->
-
-		<?php
-		the_comments_navigation();
-
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() ) :
-			?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'dsignfly1' ); ?></p>
-			<?php
-		endif;
-
-	endif; // Check for have_comments().
-
-	comment_form();
-	?>
-
-</div><!-- #comments -->
+    <?php
+  }
+   ?>
+</div>
+ <!-- Post Comment -->

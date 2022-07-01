@@ -72,6 +72,10 @@ body{
 	border-radius: 3px !important;
 	border: 1px solid #62585f !important;
 }
+.current-menu-item a {
+	background-color: #ef4634;
+	color: #fff;
+}
 
 
 /* Banner Section */
@@ -214,6 +218,7 @@ body{
 	height: 210px;
 	border-radius: 10px;
 }
+
 
 @media (min-width: 500px) and (max-width: 767px){
     .photo-gallery {
@@ -546,4 +551,62 @@ body{
 
 .sidebar-post-date li a:hover{
 	color: #ef4634;
+}
+
+/* single blog post */
+
+.blog-heading{
+	font-size: 35px;
+	color: #62585f;
+	text-shadow: 2px 2px #fff;
+	font-weight: normal;
+}
+
+.single-blog-details{
+	display: flex;
+	justify-content: space-between;
+}
+.single-blog-post-details{
+	font-size: 13px;
+	color: #62585f;
+}
+
+.single-blog-post-comments{
+	color: #ef4634;
+}
+
+.single-blog-post-text{
+	font-size: 14px;
+	line-height: 21px;
+	color: #62585f;
+}
+
+.single-blog-comment-heading{
+	font-size: 18px;
+	color: #62585f;
+}
+
+.single-blog-comment-form-group{
+	float: left;
+  	width: 33%;
+}
+.single-blog-form-item{
+	border: 1px solid #62585f!important;
+	background-color: #fff;
+}
+.singe-blog-form-label{
+	font-size: 14px;
+  font-weight: 400;
+  color: #62585f;
+}
+
+.single-blog-comment-form-submit{
+	font-size: 14px;
+	font-weight: 400;
+	color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+	float: right;
+	background-color: #222;
+	border-radius: 5px;
 }

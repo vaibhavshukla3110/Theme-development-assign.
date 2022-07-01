@@ -13,7 +13,7 @@
  */
 
 get_header();
-get_template_part( 'content', 'features' );
+get_template_part( 'template-parts/content', 'features' );
 ?>
 
 
@@ -31,13 +31,13 @@ get_template_part( 'content', 'features' );
 		if(have_posts()){
 			while(have_posts()){
 				the_post(  );
-				get_template_part('content', 'archive');
+				get_template_part('template-parts/content', 'archive');
 			}
 		}
 		?>
 		</div>
 
-		<?php get_template_part('content', 'sidebar'); ?>
+		<?php get_template_part('template-parts/content', 'sidebar'); ?>
 
 	</div>
 	<hr>
