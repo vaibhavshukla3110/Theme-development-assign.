@@ -1,39 +1,35 @@
 <?php
 /**
- * The template for displaying search results pages
+ * This file is used for the category pages in frontend
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
- * @package dsignfly1
+ * @package dsignfly
  */
 
 get_header();
-get_template_part( 'template-parts/content', 'features' )
+get_template_part( 'template-parts/content', 'features' );
 ?>
 
-	<div class="container">
-		<div class="row">
-			<div class="blog-column">
-				<h2 class="blog-heading">Results for:
-				<?php
-				if ( isset( $_GET['s'] ) ) {
-					// phpcs:ignore
-					echo wp_kses( wp_unslash( sanitize_title( $_GET['s'] ) ), '' );}
-				?>
-				</h2>
-				<hr style="height: 1px; background-color: #62585f;">
+
+<div class="container">
+	<div class="row">
+		<div class="blog-column">
+			<h2 class="blog-heading">Category: <?php single_cat_title( '', false ); ?></h2>
+			<hr style="height: 1px; background-color: #62585f;">
 			<?php
-			if ( have_posts() ) {
-				while ( have_posts() ) {
-					the_post();
+			$post_query_options = array(
+				'post_type' => array( 'post', 'portfolio' ),
+				'paged'     => get_query_var( 'paged' ),
+			);
+			$post_query         = new WP_Query( $post_query_options );
+			if ( $post_query->have_posts() ) {
+				while ( $post_query->have_posts() ) {
+					$post_query->the_post();
 					get_template_part( 'template-parts/content', 'archive' );
 				}
 			}
 			?>
 		</div>
-
 		<?php get_template_part( 'template-parts/content', 'sidebar' ); ?>
-
 	</div>
 </div>
 

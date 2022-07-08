@@ -25,15 +25,17 @@
 <div class="container">
 <header id="masthead" class="site-header">
 	<div class="header-logo">
-		<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/logo.png" alt="header-logo" >
+		<a href="http://localhost/wordpress101/">
+			<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/logo.png" alt="header-logo" >
+		</a>
 	</div>
 	<nav id="site-navigation" class="main-navigation">
-		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'dsignfly1' ); ?></button>
+		<!-- <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'dsignfly1' ); ?></button> -->
 		<?php
 		wp_nav_menu(
 			array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
+				'theme_location' => 'menu-1', // theme loaction to be used.
+				'menu_id'        => 'primary-menu', // Id that is applied to ul element which forms them menu.
 			)
 		);
 		?>
@@ -50,4 +52,3 @@
 	</nav><!-- #site-navigation -->
 </header><!-- #masthead -->
 </div>
-	

@@ -13,15 +13,15 @@
  */
 
 get_header();
-get_template_part('template-parts/content','features');
+get_template_part( 'template-parts/content', 'features' );
 ?>
 
 <?php
-	if(have_posts()){
-		while(have_posts()){
-			the_post();
-		}
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post();
 	}
+}
 ?>
 
 <div class="container">
@@ -38,13 +38,13 @@ get_template_part('template-parts/content','features');
 			<hr style="height: 1px; background-color: #62585f;">
 
 		</div>
-			<?php get_template_part('template-parts/content','sidebar'); ?>
+			<?php get_template_part( 'template-parts/content', 'sidebar' ); ?>
 
 	</div>
 </div>
 
 <div class="container">
-      <hr style="height: 1px; background-color: #62585f; margin-top: 25px;">
-    </div>
+	<hr style="height: 1px; background-color: #62585f; margin-top: 25px;">
+</div>
 
 <?php get_footer(); ?>
